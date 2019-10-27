@@ -16,12 +16,6 @@ class laboratory
 
     function login()
     {
-        // echo $this->pharmacy_password;
-        // echo $this->pharmacy_email;
-        // $messageHandler = new messageHandler("success", 200, "user login successfull", "user login successfully");
-        // echo $messageHandler->getResponse();
-
-
         // select all query
         $query = "SELECT * FROM " . $this->tableName . " WHERE email = '" . $this->pharmacy_email . "' AND password = '" . $this->pharmacy_password . "'";
 
