@@ -13,15 +13,12 @@ class connection
     {
 
         $this->conn = null;
-
-        try {
-            $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
-            $this->conn->exec("set names utf8");
-        } catch (PDOException $exception) {
-            $arr = array ('code'=> '500', 'message'=> 'failed', 'details'=>$exception->getMessage());
-            echo json_encode($arr);
+        // Create connection
+        $this->conn = new mysqli($this->host, $this->username, $this->password, $this->db_name);
+        // Check connection
+        if ($this->conn->connect_error) {
+            die("Connection failed: " . $this->conn->connect_error);
         }
-
         return $this->conn;
     }
 }
