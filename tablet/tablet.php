@@ -100,7 +100,7 @@ class tablet
         if ($stmt->num_rows > 0) {
             $arr = array();
             while ($row = $stmt->fetch_assoc()) {
-                array_push($arr, array("id" => $row[id], "tablet_name" => $row["tablet_name"], "time" => $row["time"], "prescription_id" => $row["prescription_id"]));
+                array_push($arr, array("id" => $row[id], "tablet_name" => $row["tablet_name"], "time" => $row["time"], "prescription_id" => $row["prescription_id"], "isAvailable"=> false));
             }
             $tArr = array("status" => 200, "details" => "Tablets found", "details" => $arr);
             echo json_encode($tArr);
