@@ -51,7 +51,7 @@ class prescription
                 $query = "SELECT * FROM " . $this->tableName . " WHERE id = '$ar'";
                 $stmt = $this->conn->query($query);
                 while ($row = $stmt->fetch_assoc()) {
-                    array_push($tArr, array("id" => $row["id"], "pre_name" => $row["pre_name"], "user_id"=> $row["user_id"]));
+                    array_push($tArr, array("id" => $row["id"], "pre_name" => $row["pre_name"], "user_id"=> $row["user_id"], "View"=>"View"));
                 }
             }
             $tArr = array("status" => 200, "details" => "prescription found", "details" => $tArr);
