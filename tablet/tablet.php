@@ -29,7 +29,7 @@ class tablet
         }
 
         if ($success) {
-            $arr = array('code' => 200, 'message' => 'Prescription added successfuly', 'details' => "Prescription added successfully");
+            $arr = array('status' => 200, 'message' => 'Prescription added successfuly', 'details' => "Prescription added successfully");
             echo json_encode($arr);
         }
     }
@@ -57,7 +57,7 @@ class tablet
             $qr->pharmacyId = $this->pharmacyId;
             $qr->createQr();
 
-            $arr = array('code' => 200, 'message' => 'Tablets updated successfuly', 'details' => "Tablets updated successfully");
+            $arr = array('status' => 200, 'message' => 'Tablets updated successfuly', 'details' => "Tablets updated successfully");
             echo json_encode($arr);
         }
     }
@@ -79,47 +79,43 @@ class tablet
 
         $query = "SELECT DISTINCT prescription_id  FROM " . $this->tableName . " Where is_done ='' AND isQR = ''";
         $stmt = $this->conn->query($query);
-
+        $arr = array();
         if ($stmt->num_rows > 0) {
-            $arr = array();
             while ($row = $stmt->fetch_assoc()) {
                 array_push($arr, $row["prescription_id"]);
             }
             return $arr;
         } else {
-            $messageHandler = new messageHandler("faild", 400, "Prescriptions not found", "Prescriptions not found");
-            echo $messageHandler->getResponse();
+            return $arr;
         }
     }
 
     function getPrescriptionForReadyForDelivery(){
         $query = "SELECT DISTINCT prescription_id  FROM " . $this->tableName . " Where is_done ='".$this->pharmacyId."' AND isQR = ''";
         $stmt = $this->conn->query($query);
-
+        $arr = array();
         if ($stmt->num_rows > 0) {
-            $arr = array();
+            
             while ($row = $stmt->fetch_assoc()) {
                 array_push($arr, $row["prescription_id"]);
             }
             return $arr;
         } else {
-            $messageHandler = new messageHandler("faild", 400, "Prescriptions not found", "Prescriptions not found");
-            echo $messageHandler->getResponse();
+            return $arr;
         }
     }
     function getPrescriptionForDelivered(){
         $query = "SELECT DISTINCT prescription_id  FROM " . $this->tableName . " Where is_done ='".$this->pharmacyId."' AND isQR = 'true'";
         $stmt = $this->conn->query($query);
-
+        $arr = array();
         if ($stmt->num_rows > 0) {
-            $arr = array();
+            
             while ($row = $stmt->fetch_assoc()) {
                 array_push($arr, $row["prescription_id"]);
             }
             return $arr;
         } else {
-            $messageHandler = new messageHandler("faild", 400, "Prescriptions not found", "Prescriptions not found");
-            echo $messageHandler->getResponse();
+            return $arr;
         } 
     }
 
@@ -146,7 +142,7 @@ class tablet
         $sql = "UPDATE " . $this->tableName . " SET isQR='true' WHERE prescription_id='" . $this->prescriptionId . "' and is_done='" . $this->pharmacyId . "'";
 
         if ($this->conn->query($sql) === TRUE) {
-            $arr = array('code' => 200, 'message' => 'QR validated successfuly', 'details' => "QR validated successfully");
+            $arr = array('status' => 200, 'message' => 'QR validated successfuly', 'details' => "QR validated successfully");
             echo json_encode($arr);
         } else {
             $messageHandler = new messageHandler("faild", 500, "QR validation faild", "QR validation faild");

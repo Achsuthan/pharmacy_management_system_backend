@@ -58,7 +58,7 @@ class prescription
             $tArr = array("status" => 200, "details" => "prescription found", "details" => $tArr);
             echo json_encode($tArr);
         } else {
-            $messageHandler = new messageHandler('failed', 400, 'All filed required', array());
+            $messageHandler = new messageHandler('failed', 400, array(),'All filed required');
             echo $messageHandler->getResponse();
         }
     }
@@ -79,7 +79,7 @@ class prescription
             $tArr = array("status" => 200, "details" => "prescription found", "details" => $tArr);
             echo json_encode($tArr);
         } else {
-            $messageHandler = new messageHandler('failed', 400, 'All filed required', array());
+            $messageHandler = new messageHandler('failed', 400, array(),'All filed required');
             echo $messageHandler->getResponse();
         }
     }
@@ -100,7 +100,7 @@ class prescription
             $tArr = array("status" => 200, "details" => "prescription found", "details" => $tArr);
             echo json_encode($tArr);
         } else {
-            $messageHandler = new messageHandler('failed', 400, 'All filed required', array());
+            $messageHandler = new messageHandler('failed', 400, array(),'All filed required');
             echo $messageHandler->getResponse();
         }
     }

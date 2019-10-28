@@ -16,10 +16,10 @@ class messageHandler
     function getResponse()
     {
         if ($this->status == "success") {
-            $arr = array('code' => $this->code, 'message' => $this->message, 'details' => $this->details);
+            $arr = array('status' => $this->code, 'message' => $this->message, 'details' => $this->details);
             return json_encode($arr);
         } else {
-            $arr = array('code' => $this->code, 'message' => $this->message, 'details' => $this->details);
+            $arr = array('status' => $this->code, 'message' => $this->message, 'details' => $this->details);
             return json_encode($arr);
         }
     }
