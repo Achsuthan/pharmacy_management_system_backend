@@ -24,7 +24,7 @@ class laboratory
         if ($stmt->num_rows > 0) {
             // output data of each row
             while ($row = $stmt->fetch_assoc()) {
-                $arr = array('code' => 200, 'message' => 'User login successfuly', 'details' => array('name' => $row["name"], 'eamil' => $row["email"]));
+                $arr = array('code' => 200, 'message' => 'User login successfuly', 'details' => array('name' => $row["name"], 'eamil' => $row["email"],"id"=>$row["id"]));
                 echo json_encode($arr);
             }
         } else {
@@ -38,7 +38,7 @@ class laboratory
         if (!$this->checkemail()) {
             $sql = "INSERT INTO " . $this->tableName . " (name, email, password) VALUES ('".$this->pharmacy_name."', '".$this->pharmacy_email."', '".$this->pharmacy_password."')";
             if ($this->conn->query($sql) === TRUE) {
-                $arr = array('code' => 200, 'message' => 'User added successfuly', 'details' => array('name' => $this->pharmacy_name, 'eamil' => $this->pharmacy_email));
+                $arr = array('code' => 200, 'message' => 'User added successfuly', 'details' => array('name' => $this->pharmacy_name, 'eamil' => $this->pharmacy_email,"id"=>$this->conn->insert_id));
                 echo json_encode($arr);
             } else {
                 $messageHandler = new messageHandler("faild", 500, "user register faild", "Something wrong");
