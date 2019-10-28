@@ -92,6 +92,37 @@ class tablet
         }
     }
 
+    function getPrescriptionForReadyForDelivery(){
+        $query = "SELECT DISTINCT prescription_id  FROM " . $this->tableName . " Where is_done ='".$this->pharmacyId."' AND isQR = ''";
+        $stmt = $this->conn->query($query);
+
+        if ($stmt->num_rows > 0) {
+            $arr = array();
+            while ($row = $stmt->fetch_assoc()) {
+                array_push($arr, $row["prescription_id"]);
+            }
+            return $arr;
+        } else {
+            $messageHandler = new messageHandler("faild", 400, "Prescriptions not found", "Prescriptions not found");
+            echo $messageHandler->getResponse();
+        }
+    }
+    function getPrescriptionForDelivered(){
+        $query = "SELECT DISTINCT prescription_id  FROM " . $this->tableName . " Where is_done ='".$this->pharmacyId."' AND isQR = 'true'";
+        $stmt = $this->conn->query($query);
+
+        if ($stmt->num_rows > 0) {
+            $arr = array();
+            while ($row = $stmt->fetch_assoc()) {
+                array_push($arr, $row["prescription_id"]);
+            }
+            return $arr;
+        } else {
+            $messageHandler = new messageHandler("faild", 400, "Prescriptions not found", "Prescriptions not found");
+            echo $messageHandler->getResponse();
+        } 
+    }
+
     function getTabletsFromPrescription()
     {
         $query = "SELECT *  FROM " . $this->tableName . " Where is_done ='' and prescription_id = '" . $this->prescriptionId . "'";

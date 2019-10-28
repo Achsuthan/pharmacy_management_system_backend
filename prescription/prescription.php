@@ -10,6 +10,7 @@ class prescription
     public $tablets = [];
     private $prescriptionId;
     public $pre_name;
+    public $pharmacyId;
 
     public function __construct($db)
     {
@@ -52,6 +53,48 @@ class prescription
                 $stmt = $this->conn->query($query);
                 while ($row = $stmt->fetch_assoc()) {
                     array_push($tArr, array("id" => $row["id"], "pre_name" => $row["pre_name"], "user_id"=> $row["user_id"], "View"=>"View"));
+                }
+            }
+            $tArr = array("status" => 200, "details" => "prescription found", "details" => $tArr);
+            echo json_encode($tArr);
+        } else {
+            $messageHandler = new messageHandler('failed', 400, 'All filed required', array());
+            echo $messageHandler->getResponse();
+        }
+    }
+
+    function getPrescriptionForReadyForDelivery(){
+        $tablets = new tablet($this->conn);
+        $tablets->pharmacyId = $this->pharmacyId;
+        $arr = $tablets->getPrescriptionForReadyForDelivery();
+        if (count($arr) > 0) {
+            $tArr = array();
+            foreach ($arr as $ar) {
+                $query = "SELECT * FROM " . $this->tableName . " WHERE id = '$ar'";
+                $stmt = $this->conn->query($query);
+                while ($row = $stmt->fetch_assoc()) {
+                    array_push($tArr, array("id" => $row["id"], "pre_name" => $row["pre_name"], "user_id"=> $row["user_id"], "Status"=>"Scan QR"));
+                }
+            }
+            $tArr = array("status" => 200, "details" => "prescription found", "details" => $tArr);
+            echo json_encode($tArr);
+        } else {
+            $messageHandler = new messageHandler('failed', 400, 'All filed required', array());
+            echo $messageHandler->getResponse();
+        }
+    }
+
+    function getPrescriptionForDelivered(){
+        $tablets = new tablet($this->conn);
+        $tablets->pharmacyId = $this->pharmacyId;
+        $arr = $tablets->getPrescriptionForDelivered();
+        if (count($arr) > 0) {
+            $tArr = array();
+            foreach ($arr as $ar) {
+                $query = "SELECT * FROM " . $this->tableName . " WHERE id = '$ar'";
+                $stmt = $this->conn->query($query);
+                while ($row = $stmt->fetch_assoc()) {
+                    array_push($tArr, array("id" => $row["id"], "pre_name" => $row["pre_name"], "user_id"=> $row["user_id"], "Status"=>"Delived"));
                 }
             }
             $tArr = array("status" => 200, "details" => "prescription found", "details" => $tArr);
