@@ -18,7 +18,7 @@ class tablet
     {
         $success = true;
         foreach ($this->tablets as $tablet) {
-            $sql = "INSERT INTO " . $this->tableName . " (tablet_name, time, is_done, prescription_id, isQr) VALUES ('" . $tablet->tablet_name . "', '" . $tablet->time . "', '', '" . $this->prescriptionId . "', '')";
+            $sql = "INSERT INTO " . $this->tableName . " (tablet_name, time, is_done, prescription_id, isQr, duration) VALUES ('" . $tablet->tablet_name . "', '" . $tablet->time . "', '', '" . $this->prescriptionId . "', '', '".$tablet->duration."')";
             echo $sql;
             if ($this->conn->query($sql) === TRUE) { } else {
                 $success = false;
@@ -127,7 +127,7 @@ class tablet
         if ($stmt->num_rows > 0) {
             $arr = array();
             while ($row = $stmt->fetch_assoc()) {
-                array_push($arr, array("id" => $row[id], "tablet_name" => $row["tablet_name"], "time" => $row["time"], "prescription_id" => $row["prescription_id"], "isAvailable"=> false));
+                array_push($arr, array("id" => $row[id], "tablet_name" => $row["tablet_name"], "time" => $row["time"], "prescription_id" => $row["prescription_id"], "isAvailable"=> false, "duration"=>$row["duration"]));
             }
             $tArr = array("status" => 200, "details" => "Tablets found", "details" => $arr);
             echo json_encode($tArr);
