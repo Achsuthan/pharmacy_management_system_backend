@@ -1,0 +1,373 @@
+{
+	"info": {
+		"_postman_id": "67f40ca9-8d3a-4bbf-86f0-455ec34b8de4",
+		"name": "PMS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Pharmacy Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"achsuthan@icloud.com\",\n\t\"password\": \"pass@123\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8888/pharmacy_management_system_backend/pharmacy/login.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"pharmacy_management_system_backend",
+						"pharmacy",
+						"login.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pharmacy Register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Achsuthan\",\n\t\"email\": \"achsuthan2@icloud.com\",\n\t\"password\": \"pass@123\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8888/pharmacy_management_system_backend/pharmacy/register.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"pharmacy_management_system_backend",
+						"pharmacy",
+						"register.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Laboratory Login",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"achsuthan2@icloud.com\",\n\t\"password\": \"pass@123\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8888/pharmacy_management_system_backend/laboratory/login.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"pharmacy_management_system_backend",
+						"laboratory",
+						"login.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Laboratory Register",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Achsuthan\",\n\t\"email\": \"achsuthan2@icloud.com\",\n\t\"password\": \"pass@123\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8888/pharmacy_management_system_backend/laboratory/register.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"pharmacy_management_system_backend",
+						"laboratory",
+						"register.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Prescription",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userId\": 12,\n\t\"doctorId\": 123,\n\t\"name\": \"Achsuthans Pres\",\n\t\"tablets\": [{\n\t\t\"tablet_name\": \"A\",\n\t\t\"time\": \"A1\"\n\t},\n\t{\n\t\t\"tablet_name\": \"B\",\n\t\t\"time\": \"B1\"\n\t},\n\t{\n\t\t\"tablet_name\": \"C\",\n\t\t\"time\": \"C1\"\n\t},\n\t{\n\t\t\"tablet_name\": \"D\",\n\t\t\"time\": \"D1\"\n\t}\n\t]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8888/pharmacy_management_system_backend/prescription/addPrescription.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"pharmacy_management_system_backend",
+						"prescription",
+						"addPrescription.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Prescription by Pharmacy",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"tablets\": [{\n\t\t\"id\": 13\n\t\t},\n\t\t{\n\t\t\"id\": 16\n\t\t}],\n\t\"prescriptionId\": 18,\n\t\"pharmacyId\": 14, \n\t\"userId\": 23\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8888/pharmacy_management_system_backend/tablet/updateTablets.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"pharmacy_management_system_backend",
+						"tablet",
+						"updateTablets.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Prescription for Pharmacy",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8888/pharmacy_management_system_backend/prescription/getPrescriptionForPharmacy.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"pharmacy_management_system_backend",
+						"prescription",
+						"getPrescriptionForPharmacy.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Tablets from Prescription ID",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"prescriptionId\": 18\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8888/pharmacy_management_system_backend/tablet/getTabletsFromPrescription.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"pharmacy_management_system_backend",
+						"tablet",
+						"getTabletsFromPrescription.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "QR Validation ",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userId\": 234123,\n\t\"prescriptionId\":8,\n\t\"pharmacyId\": 1\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8888/pharmacy_management_system_backend/qr/validateQR.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"pharmacy_management_system_backend",
+						"qr",
+						"validateQR.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ready for Deliver",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"pharmacyId\": 1\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8888/pharmacy_management_system_backend/prescription/getPrescriptionForReadyForDelivery.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"pharmacy_management_system_backend",
+						"prescription",
+						"getPrescriptionForReadyForDelivery.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delivered",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"pharmacyId\": 1\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8888/pharmacy_management_system_backend/prescription/getPrescriptionForDelivered.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"pharmacy_management_system_backend",
+						"prescription",
+						"getPrescriptionForDelivered.php"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
